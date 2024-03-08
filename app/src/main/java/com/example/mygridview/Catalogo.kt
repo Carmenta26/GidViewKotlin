@@ -85,28 +85,25 @@ class Catalogo : AppCompatActivity() {
             return p0.toLong()
         }
 
-         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-             var pelicula = peliculas[position]
+         override fun getView(pe: Int, p1: View?, p2: ViewGroup?): View {
+             var pelicula = peliculas[pe]
              var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-             var vista = inflator.inflate(R.layout.pelicula, parent, false)
+             var vista = inflator.inflate(R.layout.pelicula, p2, false)
              var image: ImageView = vista.findViewById(R.id.image_movie_cell)
              var title: TextView = vista.findViewById(R.id.movie_title_cell)
 
-             // Asignar los datos de la película a los elementos de la vista
              image.setImageResource(pelicula.image)
-             title.text = pelicula.title
+             title.setText(pelicula.title)
 
-             // Agregar un OnClickListener al ImageView
-             image.setOnClickListener {
+             image.setOnClickListener(){
                  val intento = Intent(context, detalle_pelicula::class.java)
                  intento.putExtra("titulo", pelicula.title)
                  intento.putExtra("imagen", pelicula.image)
                  intento.putExtra("header", pelicula.header)
                  intento.putExtra("sinopsis", pelicula.sinopsis)
-                 intento.putExtra("seats", (20 - pelicula.seats.size).toString())
+                 intento.putExtra("seats", (20-pelicula.seats.size).toString())
                  context!!.startActivity(intento)
              }
-
              return vista
          }
 

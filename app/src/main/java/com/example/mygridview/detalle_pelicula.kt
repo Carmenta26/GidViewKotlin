@@ -3,7 +3,6 @@ package com.example.mygridview
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,12 +19,11 @@ class detalle_pelicula : AppCompatActivity() {
 
         val ticketButton: Button = findViewById(R.id.compraTiket)
         val seatsTextView: TextView = findViewById(R.id.seatLeft)
+
         val boletos: String? = intent.getStringExtra("seats")
-
-
         Toast.makeText(this, "Boletos: " + boletos, Toast.LENGTH_LONG).show()
 
-        ticketButton.setOnClickListener { view: View ->
+        ticketButton.setOnClickListener {
             val intent = Intent(this, SeatSelection::class.java)
             startActivity(intent)
         }
@@ -36,7 +34,7 @@ class detalle_pelicula : AppCompatActivity() {
             iv_pelicula_image.setImageResource(bundle.getInt("header"))
             tv_nombre_pelicula.setText(bundle.getString("titulo"))
             tv_pelicula_desc.setText(bundle.getString("sinopsis"))
-            seatsTextView.setText(boletos)
+            seatsTextView.setText(boletos + " Boletos Disponibles")
         }
     }
 }
